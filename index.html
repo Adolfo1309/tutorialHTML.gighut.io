@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprende HTML desde Cero - Tutorial Interactivo</title>
+    <style>
+        /* Estilos generales */
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #3b82f6;
+            --accent-color: #8b5cf6;
+            --light-color: #f8fafc;
+            --dark-color: #1e293b;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --text-color: #334155;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            padding-bottom: 50px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Encabezado */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 2.5rem 0;
+            text-align: center;
+            border-bottom: 5px solid var(--warning-color);
+            box-shadow: var(--shadow);
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        
+        .icons-container {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        /* Introducción */
+        .intro-section {
+            padding: 3rem 0;
+            background-color: white;
+            margin-top: 1rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--warning-color);
+            display: inline-block;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--secondary-color);
+        }
+        
+        .analogy {
+            background-color: #f0f9ff;
+            border-left-color: var(--primary-color);
+        }
+        
+        /* Menú de navegación */
+        .menu-section {
+            padding: 3rem 0;
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .topic-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border-top: 4px solid var(--secondary-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .topic-card.completed {
+            border-top-color: var(--success-color);
+        }
+        
+        .topic-card.in-progress {
+            border-top-color: var(--warning-color);
+        }
+        
+        .topic-number {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .topic-card.completed .topic-number {
+            background-color: var(--success-color);
+        }
+        
+        .topic-card.in-progress .topic-number {
+            background-color: var(--warning-color);
+        }
+        
+        .topic-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .progress-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #f1f5f9;
+            border-radius: var(--border-radius);
+        }
+        
+        .progress-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        
+        .progress-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .progress-circle.completed {
+            background-color: var(--success-color);
+        }
+        
+        .progress-circle.in-progress {
+            background-color: var(--warning-color);
+        }
+        
+        /* Contenido de temas */
+        .content-section {
+            padding: 3rem 0;
+        }
+        
+        .topic-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .topic-content.active {
+            display: block;
+        }
+        
+        .code-example {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .tag {
+            color: #60a5fa;
+        }
+        
+        .attribute {
+            color: #fbbf24;
+        }
+        
+        .value {
+            color: #34d399;
+        }
+        
+        .text {
+            color: #f3f4f6;
+        }
+        
+        .example-preview {
+            background-color: white;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            justify-content: space-between;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary {
+            background-color: #e2e8f0;
+            color: var(--dark-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #cbd5e1;
+        }
+        
+        .btn-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #059669;
+        }
+        
+        .topic-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #e2e8f0;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            color: #64748b;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .progress-indicator {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Encabezado atractivo -->
+    <header>
+        <div class="container header-content">
+            <h1><i class="fas fa-code"></i> Aprende HTML desde Cero</h1>
+            <p class="subtitle">Tutorial Interactivo para Estudiantes de Bachillerato</p>
+            <p>Conceptos fundamentales paso a paso - Basado en el Manual Básico de HTML</p>
+            <div class="icons-container">
+                <i class="fas fa-laptop-code" title="Programación"></i>
+                <i class="fas fa-file-code" title="HTML"></i>
+                <i class="fas fa-globe" title="Web"></i>
+                <i class="fas fa-paint-brush" title="Diseño"></i>
+                <i class="fas fa-graduation-cap" title="Educación"></i>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Sección de Introducción -->
+        <section class="intro-section">
+            <h2 class="section-title">Introducción a HTML</h2>
+            
+            <div class="card">
+                <h3><i class="fas fa-info-circle"></i> ¿Qué es HTML?</h3>
+                <p><strong>HTML</strong> (Lenguaje de Marcado de Hipertexto) es el código que se utiliza para estructurar y desplegar una página web y sus contenidos.</p>
+                <p>Es un conjunto de etiquetas incluidas en archivos de texto que definen la estructura de un documento web y sus vínculos con otros documentos.</p>
+            </div>
+            
+            <div class="card analogy">
+                <h3><i class="fas fa-lightbulb"></i> Analogía simple</h3>
+                <p><strong>HTML es como el esqueleto de una página web</strong>. Define la estructura básica, mientras que CSS (hojas de estilo) sería como la piel y ropa que le da apariencia, y JavaScript sería como los músculos que le dan movimiento.</p>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-bullseye"></i> Objetivos de aprendizaje</h3>
+                <ul style="padding-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Comprender la estructura básica de una página HTML</li>
+                    <li>Aprender a utilizar las etiquetas HTML más comunes</li>
+                    <li>Ser capaz de crear una página web básica desde cero</li>
+                    <li>Entender cómo agregar imágenes, enlaces y tablas</li>
+                    <li>Conocer buenas prácticas de desarrollo web</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Menú de navegación interactivo -->
+        <section class="menu-section">
+            <h2 class="section-title">Temas del Tutorial</h2>
+            <p>Haz clic en cada tema para aprender. Los temas están organizados por dificultad.</p>
+            
+            <div class="topics-grid" id="topics-container">
+                <!-- Los temas se cargarán aquí dinámicamente -->
+            </div>
+            
+            <div class="progress-indicator">
+                <div class="progress-item">
+                    <div class="progress-circle" id="progress-1">1</div>
+                    <span>Estructura</span>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-circle" id="progress-2">2</div>
+                    <span>Texto</span>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-circle" id="progress-3">3</div>
+                    <span>Enlaces</span>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-circle" id="progress-4">4</div>
+                    <span>Imágenes</span>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-circle" id="progress-5">5</div>
+                    <span>Tablas</span>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-circle" id="progress-6">6</div>
+                    <span>Listas</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contenido de temas -->
+        <section class="content-section">
+            <h2 class="section-title" id="current-topic-title">Selecciona un tema para comenzar</h2>
+            
+            <div id="topic-content-container">
+                <div class="topic-content" id="default-content">
+                    <div class="card">
+                        <p>Selecciona un tema del menú de arriba para comenzar tu aprendizaje de HTML. Cada lección incluye explicaciones, ejemplos de código y ejercicios prácticos.</p>
+                        <p>Recomendamos seguir el orden propuesto para un aprendizaje progresivo.</p>
+                    </div>
+                </div>
+                
+                <!-- Los contenidos de cada tema se cargarán aquí dinámicamente -->
+            </div>
+            
+            <div class="topic-navigation" id="topic-navigation" style="display: none;">
+                <button class="btn btn-secondary" id="prev-topic-btn">
+                    <i class="fas fa-arrow-left"></i> Tema anterior
+                </button>
+                <button class="btn btn-success" id="complete-topic-btn">
+                    <i class="fas fa-check"></i> Marcar como completado
+                </button>
+                <button class="btn btn-primary" id="next-topic-btn">
+                    Siguiente tema <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+    </div>
+    
+    <footer class="container">
+        <p>Tutorial Interactivo de HTML - Para estudiantes de bachillerato</p>
+        <p>Basado en el Manual Básico de HTML de Carlos Eduardo Aníbarro Zelaya</p>
+        <p><i class="far fa-copyright"></i> 2023 - Educación Digital</p>
+    </footer>
+
+    <script>
+        // Datos de los temas del tutorial
+        const topics = [
+            {
+                id: 1,
+                title: "Estructura básica de HTML",
+                description: "Aprende las etiquetas fundamentales para crear una página web",
+                difficulty: "Fácil",
+                completed: true,
+                content: `
+                    <div class="card">
+                        <h3><i class="fas fa-sitemap"></i> Estructura básica de una página HTML</h3>
+                        <p>Toda página HTML tiene una estructura básica compuesta por:</p>
+                        <ul style="padding-left: 1.5rem; margin: 1rem 0;">
+                            <li><strong>&lt;html&gt; &lt;/html&gt;</strong>: Define el documento HTML</li>
+                            <li><strong>&lt;head&gt; &lt;/head&gt;</strong>: Contiene metadatos e información para el navegador</li>
+                            <li><strong>&lt;body&gt; &lt;/body&gt;</strong>: Contiene el contenido visible de la página</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="code-example">
+                        <pre><code><span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+  <span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;title&gt;</span><span class="text">Mi primera página web</span><span class="tag">&lt;/title&gt;</span>
+  <span class="tag">&lt;/head&gt;</span>
+  <span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;h1&gt;</span><span class="text">¡Hola Mundo!</span><span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;p&gt;</span><span class="text">Esta es mi primera página web con HTML.</span><span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+                    </div>
+                    
+                    <div class="card">
+                        <h4><i class="fas fa-lightbulb"></i> Consejo importante</h4>
+                        <p>Toda etiqueta abierta debe cerrarse. En caso de no cerrarse, el error podría causar confusión al navegador.</p>
+                    </div>
+                    
+                    <div class="actions">
+                        <button class="btn btn-secondary" onclick="showExample('structure')">
+                            <i class="fas fa-eye"></i> Ver ejemplo en vivo
+                        </button>
+                        <button class="btn btn-primary" onclick="practiceExercise(1)">
+                            <i class="fas fa-pencil-alt"></i> Ejercicio práctico
+                        </button>
+                    </div>
+                `
+            },
+            {
+                id: 2,
+                title: "Texto y encabezados",
+                description: "Formato de texto, párrafos, encabezados y saltos de línea",
+                difficulty: "Fácil",
+                completed: true,
+                content: `
+                    <div class="card">
+                        <h3><i class="fas fa-heading"></i> Encabezados HTML</h3>
+                        <p>HTML proporciona 6 niveles de encabezados, del &lt;h1&gt; (más importante) al &lt;h6&gt; (menos importante).</p>
+                        <p>Los encabezados no solo dan formato al texto, sino que también ayudan a estructurar el contenido para los motores de búsqueda.</p>
+                    </div>
+                    
+                    <div class="code-example">
+                        <pre><code><span class="tag">&lt;h1&gt;</span><span class="text">Encabezado principal</span><span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;h2&gt;</span><span class="text">Subtítulo importante</span><span class="tag">&lt;/h2&gt;</span>
+<span class="tag">&lt;h3&gt;</span><span class="text">Tema secundario</span><span class="tag">&lt;/h3&gt;</span>
+<span class="tag">&lt;p&gt;</span><span class="text">Este es un párrafo normal de texto.</span><span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;br&gt;</span> <span class="comment">&lt;!-- Salto de línea --&gt;</span>
+<span class="tag">&lt;b&gt;</span><span class="text">Texto en negrita</span><span class="tag">&lt;/b&gt;</span> <span class="tag">&lt;i&gt;</span><span class="text">Texto en cursiva</span><span class="tag">&lt;/i&gt;</span></code></pre>
+                    </div>
+                    
+                    <div class="example-preview">
+                        <h1>Encabezado principal</h1>
+                        <h2>Subtítulo importante</h2>
+                        <h3>Tema secundario</h3>
+                        <p>Este es un párrafo normal de texto.</p>
+                        <br>
+                        <b>Texto en negrita</b> <i>Texto en cursiva</i>
+                    </div>
+                    
+                    <div class="card">
+                        <h4><i class="fas fa-text-height"></i> Formato de texto básico</h4>
+                        <p>Puedes combinar varias etiquetas de formato para obtener el resultado deseado:</p>
+                        <ul style="padding-left: 1.5rem; margin: 1rem 0;">
+                            <li><strong>&lt;b&gt;</strong> o <strong>&lt;strong&gt;</strong>: Texto en negrita</li>
+                            <li><strong>&lt;i&gt;</strong> o <strong>&lt;em&gt;</strong>: Texto en cursiva</li>
+                            <li><strong>&lt;u&gt;</strong>: Texto subrayado</li>
+                            <li><strong>&lt;br&gt;</strong>: Salto de línea (no necesita cierre)</li>
+                            <li><strong>&lt;hr&gt;</strong>: Línea horizontal (no necesita cierre)</li>
+                        </ul>
+                    </div>
+                `
+            },
+            {
+                id: 3,
+                title: "Enlaces e hipervínculos",
+                description: "Cómo crear enlaces a otras páginas y recursos",
+                difficulty: "Media",
+                completed: false,
+                content: `
+                    <div class="card">
+                        <h3><i class="fas fa-link"></i> Enlaces (hipervínculos) en HTML</h3>
+                        <p>Los enlaces permiten conectar páginas web entre sí. Se crean con la etiqueta <strong>&lt;a&gt;</strong> (anchor).</p>
+                        <p>El atributo más importante es <strong>href</strong>, que especifica la dirección URL del enlace.</p>
+                    </div>
+                    
+                    <div class="code-example">
+                        <pre><code><span class="comment">&lt;!-- Enlace a otra página web --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attribute">href</span>=<span class="value">"https://www.ejemplo.com"</span><span class="tag">&gt;</span><span class="text">Visitar Ejemplo.com</span><span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Enlace a una página local --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attribute">href</span>=<span class="value">"contacto.html"</span><span class="tag">&gt;</span><span class="text">Página de contacto</span><span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Enlace que se abre en una nueva pestaña --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attribute">href</span>=<span class="value">"https://www.ejemplo.com"</span> <span class="attribute">target</span>=<span class="value">"_blank"</span><span class="tag">&gt;</span><span class="text">Abrir en nueva pestaña</span><span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Enlace de correo electrónico --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attribute">href</span>=<span class="value">"mailto:correo@ejemplo.com"</span><span class="tag">&gt;</span><span class="text">Enviar correo</span><span class="tag">&lt;/a&gt;</span></code></pre>
+                    </div>
+                    
+                    <div class="example-preview">
+                        <p><a href="#" onclick="return false;">Visitar Ejemplo.com</a> (enlace de ejemplo)</p>
+                        <p><a href="#" onclick="return false;" target="_blank">Abrir en nueva pestaña</a> (enlace de ejemplo)</p>
+                        <p><a href="mailto:ejemplo@dominio.com">Enviar correo</a> (enlace de correo)</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4><i class="fas fa-anchor"></i> Tipos de enlaces</h4>
+                        <ul style="padding-left: 1.5rem; margin: 1rem 0;">
+                            <li><strong>Enlaces absolutos</strong>: Dirección web completa (https://www.dominio.com)</li>
+                            <li><strong>Enlaces relativos</strong>: Ruta local (carpeta/pagina.html)</li>
+                            <li><strong>Enlaces internos</strong>: A una sección de la misma página (#seccion)</li>
+                            <li><strong>Enlaces de correo</strong>: Abren el cliente de correo (mailto:)</li>
+                            <li><strong>Enlaces de descarga</strong>: Para descargar archivos</li>
+                        </ul>
+                    </div>
+                `
+            },
+            {
+                id: 4,
+                title: "Imágenes en HTML",
+                description: "Cómo insertar y formatear imágenes en una página web",
+                difficulty: "Media",
+                completed: false,
+                content: `
+                    <div class="card">
+                        <h3><i class="fas fa-image"></i> Insertar imágenes en HTML</h3>
+                        <p>Para insertar imágenes usamos la etiqueta <strong>&lt;img&gt;</strong>. Es una etiqueta especial que no necesita cierre.</p>
+                        <p>El atributo <strong>src</strong> especifica la ruta de la imagen, y <strong>alt</strong> proporciona un texto alternativo.</p>
+                    </div>
+                    
+                    <div class="code-example">
+                        <pre><code><span class="comment">&lt;!-- Imagen básica --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attribute">src</span>=<span class="value">"imagen.jpg"</span> <span class="attribute">alt</span>=<span class="value">"Descripción de la imagen"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- Imagen con dimensiones específicas --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attribute">src</span>=<span class="value">"logo.png"</span> <span class="attribute">alt</span>=<span class="value">"Logo de la empresa"</span> 
+     <span class="attribute">width</span>=<span class="value">"200"</span> <span class="attribute">height</span>=<span class="value">"100"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- Imagen con borde y alineación --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attribute">src</span>=<span class="value">"foto.jpg"</span> <span class="attribute">alt</span>=<span class="value">"Foto de perfil"</span>
+     <span class="attribute">border</span>=<span class="value">"2"</span> <span class="attribute">align</span>=<span class="value">"right"</span><span class="tag">&gt;</span></code></pre>
+                    </div>
+                    
+                    <div class="example-preview">
+                        <div style="display: flex; align-items: center; gap: 20px;">
+                            <div>
+                                <p><strong>Imagen de ejemplo:</strong></p>
+                                <div style="width: 150px; height: 100px; background: linear-gradient(45deg, #3b82f6, #8b5cf6); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; border-radius: 8px;">
+                                    Imagen Ejemplo
+                                </div>
+                                <p style="font-size: 0.9rem; margin-top: 5px;"><em>Esta es una imagen de ejemplo con texto alternativo.</em></p>
+                            </div>
+                            <div>
+                                <p><strong>Formatos compatibles:</strong></p>
+                                <ul style="padding-left: 1.5rem;">
+                                    <li><strong>JPG/JPEG</strong>: Para fotografías</li>
+                                    <li><strong>PNG</strong>: Para imágenes con transparencia</li>
+                                    <li><strong>GIF</strong>: Para animaciones simples</li>
+                                    <li><strong>SVG</strong>: Para gráficos vectoriales</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h4><i class="fas fa-images"></i> Buenas prácticas con imágenes</h4>
+                        <ul style="padding-left: 1.5rem; margin: 1rem 0;">
+                            <li>Siempre usa el atributo <strong>alt</strong> para accesibilidad</li>
+                            <li>Optimiza el tamaño de las imágenes para que carguen rápido</li>
+                            <li>Usa dimensiones adecuadas (width/height) para mantener la proporción</li>
+                            <li>Considera usar formatos modernos como WebP para mejor compresión</li>
+                        </ul>
+                    </div>
+                `
+            },
+            {
+                id: 5,
+                title: "Tablas HTML",
+                description: "Crear y formatear tablas para organizar datos",
+                difficulty: "Media",
+                completed: false,
+                content: `
+                    <div class="card">
+                        <h3><i class="fas fa-table"></i> Crear tablas en HTML</h3>
+                        <p>Las tablas se utilizan para organizar datos en filas y columnas. Las etiquetas principales son:</p>
+                        <ul style="padding-left: 1.5rem; margin: 1rem 0;">
+                            <li><strong>&lt;table&gt;</strong>: Define la tabla</li>
+                            <li><strong>&lt;tr&gt;</strong>: Define una fila de la tabla</li>
+                            <li><strong>&lt;td&gt;</strong>: Define una celda de datos</li>
+                            <li><strong>&lt;th&gt;</strong>: Define una celda de encabezado</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="code-example">
+                        <pre><code><span class="tag">&lt;table</span> <span class="attribute">border</span>=<span class="value">"1"</span> <span class="attribute">width</span>=<span class="value">"80%"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;tr&gt;</span>
+    <span class="tag">&lt;th&gt;</span><span class="text">Nombre</span><span class="tag">&lt;/th&gt;</span>
+    <span class="tag">&lt;th&gt;</span><span class="text">Edad</span><span class="tag">&lt;/th&gt;</span>
+    <span class="tag">&lt;th&gt;</span><span class="text">Ciudad</span><span class="tag">&lt;/th&gt;</span>
+  <span class="tag">&lt;/tr&gt;</span>
+  <span class="tag">&lt;tr&gt;</span>
+    <span class="tag">&lt;td&gt;</span><span class="text">María González</span><span class="tag">&lt;/td&gt;</span>
+    <span class="tag">&lt;td&gt;</span><span class="text">25</span><span class="tag">&lt;/td&gt;</span>
+    <span class="tag">&lt;td&gt;</span><span class="text">Madrid</span><span class="tag">&lt;/td&gt;</span>
+  <span class="tag">&lt;/tr&gt;</span>
+  <span class="tag">&lt;tr&gt;</span>
+    <span class="tag">&lt;td&gt;</span><span class="text">Carlos López</span><span class="tag">&lt;/td&gt;</span>
+    <span class="tag">&lt;td&gt;</span><span class="text">32</span><span class="tag">&lt;/td&gt;</span>
+    <span class="tag">&lt;td&gt;</span><span class="text">Barcelona</span><span class="tag">&lt;/td&gt;</span>
+  <span class="tag">&lt;/tr&gt;</span>
+<span class="tag">&lt;/table&gt;</span></code></pre>
+                    </div>
+                    
+                    <div class="example-preview">
+                        <table border="1" width="100%" style="border-collapse: collapse; margin: 1rem 0;">
+                            <tr style="background-color: #f1f5f9;">
+                                <th style="padding: 10px; text-align: left;">Nombre</th>
+                                <th style="padding: 10px; text-align: left;">Edad</th>
+                                <th style="padding: 10px; text-align: left;">Ciudad</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;">María González</td>
+                                <td style="padding: 10px;">25</td>
+                                <td style="padding: 10px;">Madrid</td>
+                            </tr>
+                            <tr style="background-color: #f8fafc;">
+                                <td style="padding: 10px;">Carlos López</td>
+                                <td style="padding: 10px;">32</td>
+                                <td style="padding: 10px;">Barcelona</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="card">
+                        <h4><i class="fas fa-cog"></i> Atributos avanzados para tablas</h4>
+                        <ul style="padding-left: 1.5rem; margin: 1rem 0;">
+                            <li><strong>colspan</strong>: Une celdas horizontalmente</li>
+                            <li><strong>rowspan</strong>: Une celdas verticalmente</li>
+                            <li><strong>cellpadding</strong>: Espacio dentro de las celdas</li>
+                            <li><strong>cellspacing</strong>: Espacio entre celdas</li>
+                            <li><strong>align</strong>: Alineación de la tabla</li>
+                        </ul>
+                        <p><strong>Consejo:</strong> Puedes usar tablas sin borde (border="0") para organizar elementos en la página.</p>
+                    </div>
+                `
+            },
+            {
+                id: 6,
+                title: "Listas en HTML",
+                description: "Crear listas ordenadas, no ordenadas y de definición",
+                difficulty: "Fácil",
+                completed: false,
+                content: `
+                    <div class="card">
+                        <h3><i class="fas fa-list"></i> Listas en HTML</h3>
+                        <p>HTML ofrece tres tipos de listas:</p>
+                        <ul style="padding-left: 1.5rem; margin: 1rem 0;">
+                            <li><strong>Listas no ordenadas (&lt;ul&gt;)</strong>: Con viñetas</li>
+                            <li><strong>Listas ordenadas (&lt;ol&gt;)</strong>: Con números o letras</li>
+                            <li><strong>Listas de definición (&lt;dl&gt;)</strong>: Término y definición</li>
+                        </ul>
+                        <p>Cada elemento de la lista se define con la etiqueta <strong>&lt;li&gt;</strong>.</p>
+                    </div>
+                    
+                    <div class="code-example">
+                        <pre><code><span class="comment">&lt;!-- Lista no ordenada --&gt;</span>
+<span class="tag">&lt;ul&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="text">Manzanas</span><span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="text">Plátanos</span><span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="text">Naranjas</span><span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span>
+
+<span class="comment">&lt;!-- Lista ordenada --&gt;</span>
+<span class="tag">&lt;ol&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="text">Precalentar el horno</span><span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="text">Mezclar los ingredientes</span><span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="text">Hornear por 30 minutos</span><span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ol&gt;</span>
+
+<span class="comment">&lt;!-- Lista ordenada con tipo personalizado --&gt;</span>
+<span class="tag">&lt;ol</span> <span class="attribute">type</span>=<span class="value">"A"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="text">Primer paso</span><span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="text">Segundo paso</span><span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ol&gt;</span></code></pre>
+                    </div>
+                    
+                    <div class="example-preview">
+                        <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+                            <div>
+                                <p><strong>Lista no ordenada:</strong></p>
+                                <ul style="padding-left: 1.5rem;">
+                                    <li>Manzanas</li>
+                                    <li>Plátanos</li>
+                                    <li>Naranjas</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <p><strong>Lista ordenada:</strong></p>
+                                <ol style="padding-left: 1.5rem;">
+                                    <li>Precalentar el horno</li>
+                                    <li>Mezclar los ingredientes</li>
+                                    <li>Hornear por 30 minutos</li>
+                                </ol>
+                            </div>
+                            <div>
+                                <p><strong>Lista con letras:</strong></p>
+                                <ol type="A" style="padding-left: 1.5rem;">
+                                    <li>Primer paso</li>
+                                    <li>Segundo paso</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h4><i class="fas fa-sliders-h"></i> Personalización de listas</h4>
+                        <p>Puedes personalizar el estilo de las listas con los atributos <strong>type</strong> y <strong>start</strong>:</p>
+                        <ul style="padding-left: 1.5rem; margin: 1rem 0;">
+                            <li><strong>type="1"</strong>: Números (predeterminado)</li>
+                            <li><strong>type="A"</strong>: Letras mayúsculas</li>
+                            <li><strong>type="a"</strong>: Letras minúsculas</li>
+                            <li><strong>type="I"</strong>: Números romanos mayúsculos</li>
+                            <li><strong>type="i"</strong>: Números romanos minúsculos</li>
+                            <li><strong>start="5"</strong>: Comenzar desde el número 5</li>
+                        </ul>
+                        <p>Para listas no ordenadas: <strong>type="disc"</strong> (predeterminado), <strong>type="circle"</strong> o <strong>type="square"</strong>.</p>
+                    </div>
+                `
+            }
+        ];
+        
+        // Estado de la aplicación
+        let currentTopicId = 0;
+        let completedTopics = [1, 2]; // Temas 1 y 2 completados por defecto
+        
+        // Inicializar la aplicación
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTopics();
+            setupEventListeners();
+            updateProgressIndicators();
+        });
+        
+        // Renderizar los temas en el menú
+        function renderTopics() {
+            const topicsContainer = document.getElementById('topics-container');
+            topicsContainer.innerHTML = '';
+            
+            topics.forEach(topic => {
+                const isCompleted = completedTopics.includes(topic.id);
+                const isInProgress = currentTopicId === topic.id;
+                
+                const topicCard = document.createElement('div');
+                topicCard.className = `topic-card ${isCompleted ? 'completed' : ''} ${isInProgress ? 'in-progress' : ''}`;
+                topicCard.dataset.id = topic.id;
+                
+                topicCard.innerHTML = `
+                    <div class="topic-number">${topic.id}</div>
+                    <h3 class="topic-title">${topic.title}</h3>
+                    <p>${topic.description}</p>
+                    <div style="margin-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                        <span class="difficulty" style="background-color: ${getDifficultyColor(topic.difficulty)}; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;">
+                            ${topic.difficulty}
+                        </span>
+                        ${isCompleted ? '<span style="color: var(--success-color);"><i class="fas fa-check-circle"></i> Completado</span>' : ''}
+                    </div>
+                `;
+                
+                topicCard.addEventListener('click', () => {
+                    showTopic(topic.id);
+                    // Marcar como en progreso
+                    document.querySelectorAll('.topic-card').forEach(card => {
+                        card.classList.remove('in-progress');
+                    });
+                    topicCard.classList.add('in-progress');
+                });
+                
+                topicsContainer.appendChild(topicCard);
+            });
+        }
+        
+        // Mostrar el contenido de un tema
+        function showTopic(topicId) {
+            const topic = topics.find(t => t.id === topicId);
+            if (!topic) return;
+            
+            currentTopicId = topicId;
+            
+            // Actualizar título
+            document.getElementById('current-topic-title').textContent = topic.title;
+            
+            // Actualizar contenido
+            const contentContainer = document.getElementById('topic-content-container');
+            contentContainer.innerHTML = `
+                <div class="topic-content active">
+                    ${topic.content}
+                </div>
+            `;
+            
+            // Mostrar navegación entre temas
+            document.getElementById('topic-navigation').style.display = 'flex';
+            
+            // Actualizar botones de navegación
+            document.getElementById('prev-topic-btn').disabled = topicId === 1;
+            document.getElementById('next-topic-btn').disabled = topicId === topics.length;
+            
+            // Actualizar botón de completado
+            const completeBtn = document.getElementById('complete-topic-btn');
+            const isCompleted = completedTopics.includes(topicId);
+            completeBtn.innerHTML = isCompleted ? 
+                '<i class="fas fa-check-double"></i> Tema completado' : 
+                '<i class="fas fa-check"></i> Marcar como completado';
+            completeBtn.className = isCompleted ? 'btn btn-success' : 'btn btn-primary';
+        }
+        
+        // Configurar event listeners
+        function setupEventListeners() {
+            // Botón de tema anterior
+            document.getElementById('prev-topic-btn').addEventListener('click', () => {
+                if (currentTopicId > 1) {
+                    showTopic(currentTopicId - 1);
+                    updateTopicCardStyles();
+                }
+            });
+            
+            // Botón de siguiente tema
+            document.getElementById('next-topic-btn').addEventListener('click', () => {
+                if (currentTopicId < topics.length) {
+                    showTopic(currentTopicId + 1);
+                    updateTopicCardStyles();
+                }
+            });
+            
+            // Botón de completar tema
+            document.getElementById('complete-topic-btn').addEventListener('click', () => {
+                toggleCompleteTopic(currentTopicId);
+            });
+        }
+        
+        // Marcar/desmarcar tema como completado
+        function toggleCompleteTopic(topicId) {
+            const index = completedTopics.indexOf(topicId);
+            
+            if (index === -1) {
+                // Marcar como completado
+                completedTopics.push(topicId);
+            } else {
+                // Desmarcar como completado
+                completedTopics.splice(index, 1);
+            }
+            
+            // Actualizar interfaz
+            renderTopics();
+            updateProgressIndicators();
+            showTopic(currentTopicId); // Para actualizar el botón de completado
+            
+            // Actualizar estilos de las tarjetas de tema
+            updateTopicCardStyles();
+        }
+        
+        // Actualizar indicadores de progreso
+        function updateProgressIndicators() {
+            for (let i = 1; i <= 6; i++) {
+                const progressCircle = document.getElementById(`progress-${i}`);
+                const isCompleted = completedTopics.includes(i);
+                const isCurrent = currentTopicId === i;
+                
+                progressCircle.className = 'progress-circle';
+                if (isCompleted) {
+                    progressCircle.classList.add('completed');
+                } else if (isCurrent) {
+                    progressCircle.classList.add('in-progress');
+                }
+            }
+        }
+        
+        // Actualizar estilos de las tarjetas de tema
+        function updateTopicCardStyles() {
+            document.querySelectorAll('.topic-card').forEach(card => {
+                const cardId = parseInt(card.dataset.id);
+                card.classList.remove('in-progress');
+                
+                if (cardId === currentTopicId) {
+                    card.classList.add('in-progress');
+                }
+                
+                card.classList.toggle('completed', completedTopics.includes(cardId));
+            });
+        }
+        
+        // Obtener color según dificultad
+        function getDifficultyColor(difficulty) {
+            switch(difficulty.toLowerCase()) {
+                case 'fácil': return '#10b981';
+                case 'media': return '#f59e0b';
+                case 'difícil': return '#ef4444';
+                default: return '#6b7280';
+            }
+        }
+        
+        // Mostrar ejemplo en vivo (funciones de demostración)
+        function showExample(type) {
+            alert(`Este es un ejemplo de ${type}. En una aplicación completa, aquí se mostraría una demostración interactiva.`);
+        }
+        
+        function practiceExercise(exerciseNum) {
+            alert(`Ejercicio práctico #${exerciseNum}. En una aplicación completa, aquí se mostraría un editor de código interactivo para practicar.`);
+        }
+    </script>
+</body>
+</html>
